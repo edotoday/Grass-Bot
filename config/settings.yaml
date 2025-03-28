@@ -1,0 +1,91 @@
+# Application Settings
+application_settings:
+  threads: 10                     # Number of threads to use
+  cpu_thread_count: 1             # CPU thread allocation (if 0 = all available)
+  database_url: "sqlite://./database.sqlite3"  # Database connection string
+  skip_logged_accounts: false     # Whether to skip already logged accounts
+  shuffle_accounts: true           # Randomize account processing order
+
+# Attempts and Delay Settings
+attempts_and_delay_settings:
+  # Error handling and delay configurations
+  error_delay: 5                  # Delay time on errors (in seconds)
+
+  # Initial delay before starting operations
+  delay_before_start:
+    min: 0
+    max: 0
+
+  # Delay between verification nodes
+  delay_between_verification_nodes:
+    min: 5
+    max: 10
+
+  # Maximum retry attempts for various operations
+  max_register_attempts: 3
+  max_login_attempts: 3
+  max_stats_attempts: 3
+  max_proxy_change_attempts: 2
+  max_connect_wallet_attempts: 3
+  max_verification_nodes_attempts: 3
+
+  # Websocket connection settings
+  max_websocket_connect_attempts: 10
+  delay_after_websocket_connect_attempts:
+    min: 600  # Minimum delay after all websocket connect attempts (seconds)
+    max: 1200 # Maximum delay after all websocket connect attempts (seconds)
+
+# Nodes Settings
+nodes_settings:
+  # Active nodes configuration per account
+  active_nodes_per_account:
+    min: 3
+    max: 3
+
+  # Minimum proxy quality score
+  min_proxy_score: 50
+
+# Login Settings
+login_settings:
+  # Authentication method
+  auth_by: "email" # email or password
+
+# Captcha Settings
+captcha_settings:
+  # API keys for different captcha services
+  two_captcha_api_key: ""
+  anti_captcha_api_key: ""
+  capsolver_api_key: ""
+
+  # Selected captcha service (options: 2captcha, anticaptcha, capsolver)
+  captcha_service: "capsolver"
+
+# Redirect Settings
+redirect_settings:
+  enable: false
+  email: ""
+  password: ""
+  imap_server: ""
+
+# IMAP Settings
+imap_settings:
+  # Proxy and IMAP server configurations
+  use_proxy_for_imap: false
+
+  use_single_imap:
+    enable: false
+    imap_server: "imap.gmx.net"
+
+  # Mapping of email domains to their IMAP servers
+  servers:
+    gmail.com: imap.gmail.com
+    yahoo.com: imap.mail.yahoo.com
+    icloud.com: imap.mail.me.com
+    mail.ru: imap.mail.ru
+    rambler.ru: imap.rambler.ru
+    gmx.com: imap.gmx.com
+    gmx.net: imap.gmx.net
+    gmx.de: imap.gmx.net
+    onet.pl: imap.poczta.onet.pl
+    onet.com.pl: imap.poczta.onet.pl
+    op.pl: imap.poczta.onet.pl
