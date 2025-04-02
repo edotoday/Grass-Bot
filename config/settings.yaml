@@ -1,27 +1,22 @@
 # Application Settings
 application_settings:
-  threads: 10                     # Number of threads to use
-  cpu_thread_count: 1             # CPU thread allocation (if 0 = all available)
-  database_url: "sqlite://./database.sqlite3"  # Database connection string
-  skip_logged_accounts: false     # Whether to skip already logged accounts
-  shuffle_accounts: true           # Randomize account processing order
+  threads: 10 # for all modules except <<farm>>
+  cpu_thread_count: 1 # for <<farm>> module
+  database_url: "sqlite://./database.sqlite3" # sqlite or postgres
+  skip_logged_accounts: true
+  shuffle_accounts: true
 
 # Attempts and Delay Settings
 attempts_and_delay_settings:
-  # Error handling and delay configurations
-  error_delay: 5                  # Delay time on errors (in seconds)
+  error_delay: 5
+  delay_before_start: # delay for every node/account before starting the process
+    min: 0 # seconds
+    max: 0 # seconds
 
-  # Initial delay before starting operations
-  delay_before_start:
-    min: 0
-    max: 0
+  delay_between_verification_nodes: # delay between verification nodes (IP score)
+    min: 10 # minutes
+    max: 30 # minutes
 
-  # Delay between verification nodes
-  delay_between_verification_nodes:
-    min: 5
-    max: 10
-
-  # Maximum retry attempts for various operations
   max_register_attempts: 3
   max_login_attempts: 3
   max_stats_attempts: 3
@@ -29,36 +24,34 @@ attempts_and_delay_settings:
   max_connect_wallet_attempts: 3
   max_verification_nodes_attempts: 3
 
-  # Websocket connection settings
   max_websocket_connect_attempts: 10
-  delay_after_websocket_connect_attempts:
-    min: 600  # Minimum delay after all websocket connect attempts (seconds)
-    max: 1200 # Maximum delay after all websocket connect attempts (seconds)
+  delay_after_websocket_connect_attempts: # if all websocket connect attempts failed you can set delay before next cycle of attempts
+    min: 300 # seconds
+    max: 600 # seconds
 
 # Nodes Settings
 nodes_settings:
-  # Active nodes configuration per account
-  active_nodes_per_account:
-    min: 3
-    max: 3
+  enable_nodes_verification: false
 
-  # Minimum proxy quality score
-  min_proxy_score: 50
+  active_nodes_per_account:
+    min: 30
+    max: 30
+
+  min_proxy_score: 50 # positive number from 1 to 100, if proxy score is less than this value, the node proxy will be changed
 
 # Login Settings
 login_settings:
-  # Authentication method
-  auth_by: "email" # email or password
+  auth_by: "email" # password or email
+
 
 # Captcha Settings
 captcha_settings:
-  # API keys for different captcha services
   two_captcha_api_key: ""
   anti_captcha_api_key: ""
   capsolver_api_key: ""
 
-  # Selected captcha service (options: 2captcha, anticaptcha, capsolver)
-  captcha_service: "capsolver"
+  captcha_service: "capsolver" # 2captcha, anticaptcha, capsolver
+
 
 # Redirect Settings
 redirect_settings:
@@ -69,14 +62,11 @@ redirect_settings:
 
 # IMAP Settings
 imap_settings:
-  # Proxy and IMAP server configurations
   use_proxy_for_imap: false
-
   use_single_imap:
     enable: false
     imap_server: "imap.gmx.net"
 
-  # Mapping of email domains to their IMAP servers
   servers:
     gmail.com: imap.gmail.com
     yahoo.com: imap.mail.yahoo.com
@@ -89,3 +79,4 @@ imap_settings:
     onet.pl: imap.poczta.onet.pl
     onet.com.pl: imap.poczta.onet.pl
     op.pl: imap.poczta.onet.pl
+    proton.me: proton.imap.com

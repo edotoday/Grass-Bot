@@ -1,4 +1,4 @@
-# 🌐 Grass Bot 1.25X [v1.0.0]
+# 🌐 Grass Bot 1.25X [v1.0.1]
 
 <div align="center">
   <img src="./images/console.png" alt="Grass Bot Bot Console" width="600"/>
