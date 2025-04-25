@@ -1,31 +1,34 @@
 # Application Settings
 application_settings:
-  threads: 10 # for all modules except <<farm>>
-  cpu_thread_count: 1 # for <<farm>> module
-  database_url: "sqlite://./database.sqlite3" # sqlite or postgres
+  threads: 5
+  cpu_thread_count: 1
+  database_url: "sqlite://./database.sqlite3"
   skip_logged_accounts: true
   shuffle_accounts: true
+  generate_random_pass: true # only for <<Set password>> module
+  check_uniqueness_of_proxies: true
 
 # Attempts and Delay Settings
 attempts_and_delay_settings:
-  error_delay: 5
-  delay_before_start: # delay for every node/account before starting the process
+  error_delay: 5 # seconds
+  delay_before_start:
     min: 0 # seconds
     max: 0 # seconds
 
-  delay_between_verification_nodes: # delay between verification nodes (IP score)
-    min: 10 # minutes
-    max: 30 # minutes
+  delay_between_verification_nodes:
+    min: 1 # minutes
+    max: 1 # minutes
 
   max_register_attempts: 3
   max_login_attempts: 3
   max_stats_attempts: 3
+  max_set_password_attempts: 3
   max_proxy_change_attempts: 2
   max_connect_wallet_attempts: 3
   max_verification_nodes_attempts: 3
 
   max_websocket_connect_attempts: 10
-  delay_after_websocket_connect_attempts: # if all websocket connect attempts failed you can set delay before next cycle of attempts
+  delay_after_websocket_connect_attempts:
     min: 300 # seconds
     max: 600 # seconds
 
@@ -34,14 +37,14 @@ nodes_settings:
   enable_nodes_verification: false
 
   active_nodes_per_account:
-    min: 30
-    max: 30
+    min: 2
+    max: 3
 
-  min_proxy_score: 50 # positive number from 1 to 100, if proxy score is less than this value, the node proxy will be changed
+  min_proxy_score: 50
 
 # Login Settings
 login_settings:
-  auth_by: "email" # password or email
+  auth_by: "password"
 
 
 # Captcha Settings
@@ -79,4 +82,3 @@ imap_settings:
     onet.pl: imap.poczta.onet.pl
     onet.com.pl: imap.poczta.onet.pl
     op.pl: imap.poczta.onet.pl
-    proton.me: proton.imap.com

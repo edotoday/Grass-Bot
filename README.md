@@ -1,4 +1,4 @@
-# 🌐 Grass Bot 1.25X [v1.0.1]
+# 🌐 Grass Bot 1.25X [v1.0.2]
 
 <div align="center">
   <img src="./images/console.png" alt="Grass Bot Bot Console" width="600"/>
@@ -49,7 +49,8 @@ Detailed step-by-step instructions to help you install and use **Grass Bot 1.25X
 - Login accounts  
 - Farm accounts  
 - Connect wallet to accounts  
-- Export accounts statistics  
+- Export accounts statistics
+- Set password for accounts
 - Clean accounts proxies  
 - Clean nodes proxies  
 
