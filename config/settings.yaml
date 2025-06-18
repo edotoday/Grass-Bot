@@ -1,84 +1,90 @@
-# Application Settings
+# ═══════════════════════════════════════════════════════════════════════════
+#                           APPLICATION CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════
+
+grass_settings:
+  extension_version: "5.3.1"
+
 application_settings:
-  threads: 5
-  cpu_thread_count: 1
-  database_url: "sqlite://./database.sqlite3"
-  skip_logged_accounts: true
-  shuffle_accounts: true
-  generate_random_pass: true # only for <<Set password>> module
+  threads: 10 # number of threads, if you specify 10, for example, then 10 accounts will be used simultaneously
+  cpu_thread_count: 1 # number of CPU threads to use, only for farming, not for other modules
+  database_url: "sqlite://./database.sqlite3" # SQlite or postgres, e.g. sqlite://database.db or postgres://user:password@localhost/dbname
+  skip_logged_accounts: true # skip accounts that are already logged in, if you need to relogin accounts - set false
+  shuffle_accounts: true # shuffle accounts before starting the module
   check_uniqueness_of_proxies: true
+  use_random_ref_code_from_db: true
 
-# Attempts and Delay Settings
+nodes_settings:
+  enable_nodes_verification: false
+  disable_auto_proxy_change: false
+
+  active_nodes_per_account:
+    min: 5 # minimum number of active nodes per account
+    max: 5 # maximum number of active nodes per account
+
+login_settings:
+  login_by: "email" # email or password
+
+
 attempts_and_delay_settings:
-  error_delay: 5 # seconds
-  delay_before_start:
-    min: 0 # seconds
-    max: 0 # seconds
+  delay_before_start: # random delay before starting the module for each account
+    min: 0 # in seconds
+    max: 0 # in seconds
 
-  delay_between_verification_nodes:
-    min: 1 # minutes
-    max: 1 # minutes
+  delay_after_attempts_to_receive_dest:
+    min: 60 # in seconds
+    max: 120 # in seconds
 
+  delay_between_verification: # works only if enable_nodes_verification = true
+    min: 30 # in minutes
+    max: 60 # in minutes
+
+  error_delay: 5 # in seconds
   max_register_attempts: 3
   max_login_attempts: 3
   max_stats_attempts: 3
-  max_set_password_attempts: 3
-  max_proxy_change_attempts: 2
+  max_captcha_attempts: 3
+  max_farm_attempts: 3
+  max_verify_node_attempts: 3
   max_connect_wallet_attempts: 3
-  max_verification_nodes_attempts: 3
-
-  max_websocket_connect_attempts: 10
-  delay_after_websocket_connect_attempts:
-    min: 300 # seconds
-    max: 600 # seconds
-
-# Nodes Settings
-nodes_settings:
-  enable_nodes_verification: false
-
-  active_nodes_per_account:
-    min: 2
-    max: 3
-
-  min_proxy_score: 50
-
-# Login Settings
-login_settings:
-  auth_by: "password"
+  max_set_password_attempts: 3
+  max_collect_tier_rewards_attempts: 3
 
 
-# Captcha Settings
 captcha_settings:
+  captcha_service: "anti_captcha" # options: 2captcha, anti_captcha, capsolver, solvium
+  max_captcha_solving_time: 60 # in seconds
+
   two_captcha_api_key: ""
   anti_captcha_api_key: ""
   capsolver_api_key: ""
 
-  captcha_service: "capsolver" # 2captcha, anticaptcha, capsolver
 
-
-# Redirect Settings
 redirect_settings:
   enable: false
   email: ""
   password: ""
   imap_server: ""
+  use_proxy: false
 
-# IMAP Settings
+
 imap_settings:
   use_proxy_for_imap: false
+
   use_single_imap:
     enable: false
-    imap_server: "imap.gmx.net"
+    imap_server: "imap.gmail.com"
 
   servers:
     gmail.com: imap.gmail.com
     yahoo.com: imap.mail.yahoo.com
     icloud.com: imap.mail.me.com
     mail.ru: imap.mail.ru
-    rambler.ru: imap.rambler.ru
     gmx.com: imap.gmx.com
     gmx.net: imap.gmx.net
     gmx.de: imap.gmx.net
     onet.pl: imap.poczta.onet.pl
     onet.com.pl: imap.poczta.onet.pl
     op.pl: imap.poczta.onet.pl
+    onet.eu: imap.poczta.onet.pl
+    gazeta.pl: imap.gazeta.pl
