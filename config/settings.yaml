@@ -39,7 +39,7 @@ attempts_and_delay_settings:
     min: 30 # in minutes
     max: 60 # in minutes
 
-  error_delay: 5 # in seconds
+  error_delay: 10 # in seconds
   max_register_attempts: 3
   max_login_attempts: 3
   max_stats_attempts: 3
@@ -52,7 +52,7 @@ attempts_and_delay_settings:
 
 
 captcha_settings:
-  captcha_service: "anti_captcha" # options: 2captcha, anti_captcha, capsolver, solvium
+  captcha_service: "anti_captcha" # options: 2captcha, anti_captcha, capsolver
   max_captcha_solving_time: 60 # in seconds
 
   two_captcha_api_key: ""
